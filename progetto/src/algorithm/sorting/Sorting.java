@@ -83,7 +83,7 @@ public class Sorting {
 	public static <T extends Comparable<T>> void merge(T A[], int p, int q, int r) {
 		T[] B = (T[])new Comparable[r - p + 1];
 		int i = p, j = q + 1, k = 0;
-		while (i < p && j < r) {
+		while (i <= q && j <= r) {
 			if (A[i].compareTo(A[j]) <= 0) {
 				B[k] = A[i];
 				i++;
@@ -102,6 +102,9 @@ public class Sorting {
 			B[k] = A[j];
 			k++;
 			j++;
+		}
+		for (k = 0; k < B.length; k++) {
+			A[p + k] = B[k];
 		}
 	}
 	

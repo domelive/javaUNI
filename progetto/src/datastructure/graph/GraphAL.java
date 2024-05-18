@@ -126,7 +126,7 @@ public class GraphAL<D> implements Graph<D> {
      *  @param v vertex
 	 *  @return the index of the vertex v
 	 */	
-	protected int index(VertexAL<D> v) {
+	public int index(VertexAL<D> v) {
 		return v.index;
 	}
 

@@ -20,13 +20,8 @@ public class WeightedEdge<D> extends Edge<D> implements Comparable<WeightedEdge<
 		this.weight = weight;
 	}
 	
+	@Override
 	public int compareTo(WeightedEdge<D> e) {
-		if(this.weight == e.weight) {
-			return 0;
-		} else if(this.weight < e.weight) {
-			return -1;
-		} else {
-			return 1;
-		}
+		return Double.compare(this.weight, e.weight);
 	}
 }
