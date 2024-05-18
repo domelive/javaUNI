@@ -108,7 +108,7 @@ public class Sorting {
 	public static <T extends Comparable<T>> void mergesortAlg(T A[], int p, int r) {
 		if (p < r) {
 			int q = (p + r) / 2;
-			mergesortAlg(A, p, r);
+			mergesortAlg(A, p, q);
 			mergesortAlg(A, q + 1, r);
 			merge(A, p, q, r);
 		}
