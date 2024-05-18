@@ -80,8 +80,42 @@ public class Sorting {
 	 * @param A the array to be sorted
 	 * @param <T> class of the object in the array
 	 */
+	public static <T extends Comparable<T>> void merge(T A[], int p, int q, int r) {
+		T[] B = (T[])new Comparable[r - p + 1];
+		int i = p, j = q + 1, k = 0;
+		while (i < p && j < r) {
+			if (A[i].compareTo(A[j]) <= 0) {
+				B[k] = A[i];
+				i++;
+			} else {
+				B[k] = A[j];
+				j++;
+			}
+			k++;
+		}
+		while (i <= q) {
+			B[k] = A[i];
+			i++;
+			k++;
+		}
+		while (j <= r) {
+			B[k] = A[j];
+			k++;
+			j++;
+		}
+	}
+	
+	public static <T extends Comparable<T>> void mergesortAlg(T A[], int p, int r) {
+		if (p < r) {
+			int q = (p + r) / 2;
+			mergesortAlg(A, p, r);
+			mergesortAlg(A, q + 1, r);
+			merge(A, p, q, r);
+		}
+	}
+
 	public static <T extends Comparable<T>> void mergesort(T A[]) {
-		
+		mergesortAlg(A, 0, A.length - 1);
 	}
 
  	/**
@@ -93,11 +127,12 @@ public class Sorting {
 	 * </ul>
 	 * @param A the array to be sorted
 	 */
+
 	public static void mergesort(int A[]) {
-
+	
 	}
-
-
+	
+	
 	/**
 	 * Sorts the specified array according to the ordering induced by the compareTo() method in O(n<sup>2</sup>) and O(nlogn) on the average
 	 * <p>
@@ -110,7 +145,6 @@ public class Sorting {
 	 * @param <T> class of the object in the array
 	 */
 	public static <T extends Comparable<T>> void quicksort(T A[]) {
-
 	}
 
 	/**
