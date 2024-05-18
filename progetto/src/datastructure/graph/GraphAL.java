@@ -29,23 +29,65 @@ public class GraphAL<D> implements Graph<D> {
 		vertexes = new ArrayList<VertexAL<D>>();
 	}
 
-	public int vertexNum() { }
+	public int vertexNum() { 
+		return this.n;
+	}
 
-	public int edgeNum() { }
+	public int edgeNum() { 
+		return this.m;
+	}
 
-	public ArrayList<Vertex<D>> vertexes() { }
+	public ArrayList<Vertex<D>> vertexes() { 
+		ArrayList<Vertex<D>> v = new ArrayList<Vertex<D>>();
+		for(VertexAL<D> vert : this.vertexes) {
+			v.add(vert);
+		}
+		return v;
+	}
 	
-	public ArrayList<Edge<D>> edges() {	}
+	public ArrayList<Edge<D>> edges() {	
+		ArrayList<Edge<D>> l = new ArrayList<Edge<D>>();
+		for(VertexAL<D> vert : this.vertexes) {
+			for(Edge<D> e : vert.adjac) {
+				l.add(e);
+			}
+		}
+		return l;
+	}
 
-	public int outDegree(Vertex<D> v) {	}
+	public int outDegree(Vertex<D> v) {	
+		return ((VertexAL<D>)v).adjac.size();
+	}
 	
-	public ArrayList<Edge<D>> outEdges(Vertex<D> v) { }
+	public ArrayList<Edge<D>> outEdges(Vertex<D> v) { 
+		ArrayList<Edge<D>> l = new ArrayList<Edge<D>>();
+		for(Edge<D> e : ((VertexAL<D>)v).adjac) {
+			l.add(e);
+		}
+		return l;
+	}
 	
-	public Edge<D> areAdjacent(Vertex<D> x, Vertex<D> y) { }
+	public Edge<D> areAdjacent(Vertex<D> x, Vertex<D> y) { 
+		for(Edge<D> e : ((VertexAL<D>)x).adjac) {
+			if(e.dest == y) {
+				return e;
+			}
+		}
+		return null;
+	}
 
-	public Vertex<D> addVertex(D data) { }
+	public Vertex<D> addVertex(D data) { 
+		VertexAL<D> v = new VertexAL<D>(data, this.n);
+		this.vertexes.add(v);
+		this.n++;
+		return v;
+	}
 
-	public void addEdge(Edge<D> e) { }
+	public void addEdge(Edge<D> e) { 
+		VertexAL<D> v = (VertexAL<D>)e.source;
+		v.adjac.add(e);
+		this.m++;
+	}
 	
 	public void removeVertex(Vertex<D> v) {
 		VertexAL<D> vAL = (VertexAL<D>)v;
@@ -71,7 +113,13 @@ public class GraphAL<D> implements Graph<D> {
 		}
 	}
 
-	public void removeEdge(Edge<D> e) { }
+	public void removeEdge(Edge<D> e) {
+		VertexAL<D> v = (VertexAL<D>)e.source;
+		if(v.adjac.contains(e)) {
+			v.adjac.remove(e);
+			this.m--;
+		}
+	}
 
 	/**
 	 *  Returns the index of a vertex
