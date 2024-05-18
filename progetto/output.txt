@@ -8,4 +8,4 @@ Adiacenti a: 6  7 1.0  5 2.0
 Adiacenti a: 7  6 1.0  0 8.0
 Adiacenti a: 8  2 2.0
 Costo tot: 37.0
-Elapsed time: 0 minuti e 0.034 secondi
+Elapsed time: 0 minuti e 0.001 secondi

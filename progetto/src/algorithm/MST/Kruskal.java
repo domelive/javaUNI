@@ -42,11 +42,6 @@ public class Kruskal<D> implements MST<D> {
 		WeightedEdge<D>[] sortedEdges = g.edges().toArray(new WeightedEdge[g.edgeNum()]);
 		Sorting.mergesort(sortedEdges);
 
-		// stampa sortedEdges
-		for(int i = 0; i < sortedEdges.length; i++) {
-			System.out.println(sortedEdges[i].source.data + " " + sortedEdges[i].dest.data + " " + sortedEdges[i].weight);
-		}
-
 		for(WeightedEdge<D> e : sortedEdges) {
 			QURset Tu = (QURset) u.find(nodes.get(e.source));
 			QURset Tv = (QURset) u.find(nodes.get(e.dest));
